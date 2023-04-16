@@ -1,0 +1,21 @@
+<!--
+ * @Date: 2023-04-15 08:31:12
+-->
+<template>
+  <div>
+    
+  </div>
+</template>
+
+<script>
+import Footer from '../components/common/Footer.vue'
+import Header from '../components/common/Header.vue'
+import menu from '../components/common/Menu.vue'
+export default {
+  name: 'Home'
+}
+</script>
+
+<style>
+
+</style>
