@@ -124,10 +124,7 @@ export default {
       })
     },
     showDialog(row) { // 传一个id用来判断是否是修改操作
-      if(row) {
-        this.row = {...row};
-        this.form = {...row}; // 这里不能直接this.form = row否则会直接更改页面的值，浅拷贝问题
-      }
+      row && (this.row = {...row});
       this.dialogFormVisible = true;
     },
     // 删除数据

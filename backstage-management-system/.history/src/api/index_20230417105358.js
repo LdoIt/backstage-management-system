@@ -16,4 +16,4 @@ export function addInfo(d) {let data = qs.stringify(d);return service.post('/api
 // 删除数据
 export function delInfo(id) {return service.delete(`/api2/info/${id}`)}
 // 修改数据
-export function editInfo(d) {let data = qs.stringify(d);return service.put('/api2/info', data)}
+export function edit(d) {let data = qs.stringify(d);return service.put('/api2/info', data)}

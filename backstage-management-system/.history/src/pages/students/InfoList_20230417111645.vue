@@ -3,7 +3,7 @@
 -->
 <template>
   <div>
-    <el-button type="primary" class="add" @click="showDialog(false)">新增</el-button>
+    <el-button type="primary" class="add" @click="showDialog">新增</el-button>
     <el-dialog title="新增信息" :visible.sync="dialogFormVisible" :close-on-click-modal="false" modal center width="500px">
       <el-form :model="form" :rules="rules" ref="form" label-width="100px">
         <el-form-item label="姓名" prop="name">
@@ -50,7 +50,7 @@
           <!-- 用vue中的作用域插槽可以拿到当前行的数据 -->
           <template slot-scope="scope">
             <el-button type="danger" class="el-icon-delete" size="mini" @click="del(scope.row.id)"></el-button>
-            <el-button type="danger" class="el-icon-edit" size="mini" ref="editBtn" @click="showDialog(scope.row)"></el-button>
+            <el-button type="danger" class="el-icon-edit" size="mini" @click="edit(scope.row.id)"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -83,7 +83,6 @@ export default {
         phone: [{ required: true, message: '请输入联系电话', trigger: 'blur' }]
       }, // 表单验证规则
       dialogFormVisible: false, // 控制表格显示与隐藏
-      row: '', // 每条数据
     }
   },
   created() {
@@ -110,37 +109,28 @@ export default {
     confirm(form) {
       this.$refs[form].validate(async (valid) => {
         if(valid) { // 通过验证
-          if(!this.row) {
-            this.add()
-          }else {
-            this.edit(this.row);
-          }
+          // 新增数据
+          this.add()
           // 关闭验证，防止再次打开会有上一次的验证错误
           this.$refs.form.resetFields();
-          this.dialogFormVisible = false;
         }else {
           alert('请填入数据')
         }
       })
     },
-    showDialog(row) { // 传一个id用来判断是否是修改操作
-      if(row) {
-        this.row = {...row};
-        this.form = {...row}; // 这里不能直接this.form = row否则会直接更改页面的值，浅拷贝问题
-      }
+    showDialog() {
       this.dialogFormVisible = true;
     },
     // 删除数据
     async del(id) {
-      try {
-        let res = await delInfo(id)
+      let res = await delInfo(id)
+      if (res.status === 200) {
         this.getInfoList()
         this.$message({message: res.data.message, type: 'success'})
-      } catch (error) {
+      }else {
         this.$message({message: res.data.message, type: 'warning'})
       }
     },
-  
     async add() {
       try {
         let res = await addInfo(this.form)
@@ -149,24 +139,17 @@ export default {
         // 新增成功提示语
         this.$message({message: res.data.message, type: 'success'})
         // 清空表单值
-        this.form = {sex: '1'};
+        this.form = {sex: '1'}
+        this.dialogFormVisible = false;
       } catch (error) {
-        this.$message({message: error.message, type: 'danger'})
+        this.$message({message: error.data.message, type: 'danger'})
       }
     },
     // 编辑数据
-    async edit(row) {
+    async edit(id) {
       this.dialogFormVisible = true;
-      try {
-        this.form.id = row.id;
-        let res = await editInfo(this.form);
-        this.form.id = '';
-        this.row = {};
-        this.getInfoList();
-        this.$message({message: res.data.message, type: 'success'})
-      } catch (error) {
-        this.$message({message: error.message, type: 'danger'})
-      }
+      let res = await editInfo(rowData);
+      console.log(res);
     },
   }
 }

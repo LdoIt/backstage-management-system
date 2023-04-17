@@ -83,6 +83,7 @@ export default {
         phone: [{ required: true, message: '请输入联系电话', trigger: 'blur' }]
       }, // 表单验证规则
       dialogFormVisible: false, // 控制表格显示与隐藏
+      optionType: '', // 操作类型
       row: '', // 每条数据
     }
   },
@@ -110,7 +111,7 @@ export default {
     confirm(form) {
       this.$refs[form].validate(async (valid) => {
         if(valid) { // 通过验证
-          if(!this.row) {
+          if(this.optionType == 'add') {
             this.add()
           }else {
             this.edit(this.row);
@@ -124,10 +125,8 @@ export default {
       })
     },
     showDialog(row) { // 传一个id用来判断是否是修改操作
-      if(row) {
-        this.row = {...row};
-        this.form = {...row}; // 这里不能直接this.form = row否则会直接更改页面的值，浅拷贝问题
-      }
+      row && (this.row = {...row});
+      console.log(this.row);
       this.dialogFormVisible = true;
     },
     // 删除数据
@@ -142,6 +141,7 @@ export default {
     },
   
     async add() {
+      this.optionType = 'add';
       try {
         let res = await addInfo(this.form)
         // 重新获取数据
@@ -156,16 +156,17 @@ export default {
     },
     // 编辑数据
     async edit(row) {
+      this.optionType = 'edit';
       this.dialogFormVisible = true;
+      this.form = row;
       try {
-        this.form.id = row.id;
-        let res = await editInfo(this.form);
+        await editInfo(this.form);
         this.form.id = '';
         this.row = {};
         this.getInfoList();
         this.$message({message: res.data.message, type: 'success'})
       } catch (error) {
-        this.$message({message: error.message, type: 'danger'})
+        this.$message({message: error.data.message, type: 'danger'})
       }
     },
   }
