@@ -27,7 +27,7 @@ import {
   Radio,
   DatePicker,
   Progress,
-  MessageBox,
+  Confirm
    } from 'element-ui';
 Vue.use(Form);
 Vue.use(Button);
@@ -52,7 +52,5 @@ Vue.use(Dialog);
 Vue.use(Radio);
 Vue.use(DatePicker);
 Vue.use(Progress);
-// Vue.use(MessageBox); // 这种引入会有bug，页面一刷新就会弹出该框
-Vue.component(Message.name,Message)
-Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$confirm = Confirm;
 Vue.prototype.$message = Message;

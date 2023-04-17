@@ -14,7 +14,7 @@ const loading = {//创建loading对象，在里面添加属性和方法，在方
       if (this.LoadingInstance === null) {
           // 创建单例, 防止切换路由重复加载
           this.LoadingInstance = Loading.service({
-              text: '拼命了老命加载',
+              text: '拼命加载中',
               background: 'raga(0,0,0,0.5)',//加载效果
               target: '.mianIfo',//效果显示区域
               /* 	Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；
@@ -37,22 +37,27 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(config => {
   // 当请求发出去就可以开启loading
-  loading.open();
+  // loading.open();
+  Loading.service({
+    // text: '拼命加载中',
+    background: 'raga(0,0,0,0.5)',//加载效果
+    // target: '.mianIfo',//效果显示区域
+})
   // 当发请求的时候，携带token
   config.headers['token'] = getToken('token')
   return config
 }, error => {
-  loading.close();
+  // loading.close();
   Promise.reject(error)
 })
 
 // 响应拦截器
 service.interceptors.response.use(response => {
-  loading.close();
+  // loading.close();
   // 接收到响应数据并成功后的一些共有的处理，关闭loading等
   return response
 }, error => {
-  loading.close();
+  // loading.close();
   // 请求出错就提示
   let {message} = error;
   Message({message: message || 'error', type: 'error'})

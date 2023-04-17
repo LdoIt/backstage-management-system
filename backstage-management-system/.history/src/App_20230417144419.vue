@@ -3,6 +3,7 @@
 -->
 <template>
   <div class="appContainer">
+    <el-progress :percentage="50"></el-progress>
     <router-view></router-view>
   </div>
 </template>

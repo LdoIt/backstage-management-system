@@ -14,9 +14,9 @@ const loading = {//创建loading对象，在里面添加属性和方法，在方
       if (this.LoadingInstance === null) {
           // 创建单例, 防止切换路由重复加载
           this.LoadingInstance = Loading.service({
-              text: '拼命了老命加载',
+              text: '拼命加载中',
               background: 'raga(0,0,0,0.5)',//加载效果
-              target: '.mianIfo',//效果显示区域
+              target: '.appContainer',//效果显示区域
               /* 	Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；
               若传入字符串，则会将其作为参数传入 document.querySelector以获取到对应 DOM 节点
               这里找到AppMain组件*/

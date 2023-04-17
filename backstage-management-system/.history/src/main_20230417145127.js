@@ -7,6 +7,9 @@ import App from './App.vue'
 import './plugins/element'
 // 导入路由
 import router from './router'
+// 引入laoding加载组件
+import { Loading } from 'element-ui';
+Vue.use(Loading.directive);
 
 Vue.config.productionTip = false
 

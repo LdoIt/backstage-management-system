@@ -1,8 +1,6 @@
-<!--
- * @Date: 2023-04-13 17:21:53
--->
 <template>
   <div class="appContainer">
+    <el-progress :percentage="50"></el-progress>
     <router-view></router-view>
   </div>
 </template>

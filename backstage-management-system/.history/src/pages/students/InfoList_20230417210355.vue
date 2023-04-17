@@ -48,7 +48,7 @@
     </el-dialog>
 
     <!-- 表格内容 -->
-    <el-table :data="infoList.slice((currentPage - 1) * currentSize, currentPage * currentSize)" stripe style="width: 100%" border height="515">
+    <el-table :data="infoList.slice((currentPage - 1) * currentSize, currentPage * currentSize)" stripe style="width: 100%" border height="515" v-loading="!infoList.length">
         <el-table-column prop="name" label="姓名" align="center"> </el-table-column>
         <el-table-column prop="sex_text" label="性别" align="center"> </el-table-column>
         <el-table-column prop="age" label="年龄" align="center"> </el-table-column>
@@ -76,13 +76,11 @@
       :page-size="100" layout="total, sizes, prev, pager, next, jumper"
       :total="total"></el-pagination>
     </div>
-
   </div>
 </template>
 
 <script>
 import {getInfo, addInfo, delInfo, editInfo} from '../../api'
-import {getTableList} from '@/utils/table'
 export default {
   data() {
     return {
@@ -126,16 +124,14 @@ export default {
     },
     // 获取信息数据
     async getInfoList() {
-      const that = this;
-      getTableList(getInfo, 'infoList', 'total', ['sex'], this)
-      // let res = await getInfo();
-      // if(res.status === 200 ) {
-      //   this.infoList = res.data.data;
-      //   this.total = this.infoList.length;
-      //   this.infoList.forEach(item => {
-      //     item.sex_text = item.sex == 1 ? '男' : '女'
-      //   })
-      // }
+      let res = await getInfo();
+      if(res.status === 200 ) {
+        this.infoList = res.data.data;
+        this.total = this.infoList.length;
+        this.infoList.forEach(item => {
+          item.sex_text = item.sex == 1 ? '男' : '女'
+        })
+      }
     },
     // 取消dialog
     cance() {

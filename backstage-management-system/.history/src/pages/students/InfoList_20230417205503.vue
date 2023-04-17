@@ -45,10 +45,8 @@
         <el-button @click="cance">取 消</el-button>
         <el-button type="primary" @click="confirm('form')">确 定</el-button>
       </div>
-    </el-dialog>
-
-    <!-- 表格内容 -->
-    <el-table :data="infoList.slice((currentPage - 1) * currentSize, currentPage * currentSize)" stripe style="width: 100%" border height="515">
+    </el-dialog>    
+    <el-table :data="infoList" stripe style="width: 100%" border height="570" v-loading="!infoList.length">
         <el-table-column prop="name" label="姓名" align="center"> </el-table-column>
         <el-table-column prop="sex_text" label="性别" align="center"> </el-table-column>
         <el-table-column prop="age" label="年龄" align="center"> </el-table-column>
@@ -64,25 +62,12 @@
             <el-button type="danger" class="el-icon-edit" size="mini" ref="editBtn" @click="showDialog(scope.row)"></el-button>
           </template>
         </el-table-column>
-    </el-table>
-
-    <!-- 分页器 -->
-    <div class="block" style="">
-      <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-sizes="[5, 10, 15, 20]"
-      :page-size="100" layout="total, sizes, prev, pager, next, jumper"
-      :total="total"></el-pagination>
-    </div>
-
+      </el-table>
   </div>
 </template>
 
 <script>
 import {getInfo, addInfo, delInfo, editInfo} from '../../api'
-import {getTableList} from '@/utils/table'
 export default {
   data() {
     return {
@@ -106,9 +91,6 @@ export default {
         address: [{ required: true, message: '请输入家庭地址', trigger: 'blur' }],
         phone: [{ required: true, message: '请输入联系电话', trigger: 'blur' }]
       }, // 表单验证规则
-      total: 0, // 总数据条数
-      currentSize: 5, // 每页数据条数
-      currentPage: 1, // 当前页
       dialogFormVisible: false, // 控制表格显示与隐藏
       row: '', // 每条数据
     }
@@ -117,25 +99,15 @@ export default {
     this.getInfoList();
   },
   methods: {
-    // 分页器相关方法
-    handleSizeChange(val) {
-      this.currentSize = val;
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
-    },
     // 获取信息数据
     async getInfoList() {
-      const that = this;
-      getTableList(getInfo, 'infoList', 'total', ['sex'], this)
-      // let res = await getInfo();
-      // if(res.status === 200 ) {
-      //   this.infoList = res.data.data;
-      //   this.total = this.infoList.length;
-      //   this.infoList.forEach(item => {
-      //     item.sex_text = item.sex == 1 ? '男' : '女'
-      //   })
-      // }
+      let res = await getInfo();
+      if(res.status === 200 ) {
+        this.infoList = res.data.data;
+        this.infoList.forEach(item => {
+          item.sex_text = item.sex == 1 ? '男' : '女'
+        })
+      }
     },
     // 取消dialog
     cance() {
@@ -218,9 +190,4 @@ export default {
   .add {
     margin-bottom: 20px;
   }
-  .el-pagination {
-      display: flex;
-      margin-top: 20px;
-      justify-content: center;
-    }
 </style>

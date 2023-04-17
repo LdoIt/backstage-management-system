@@ -126,8 +126,8 @@ export default {
     },
     // 获取信息数据
     async getInfoList() {
-      const that = this;
-      getTableList(getInfo, 'infoList', 'total', ['sex'], this)
+
+      getTableList(getInfo, this.infoList, this.total, ['sex'])
       // let res = await getInfo();
       // if(res.status === 200 ) {
       //   this.infoList = res.data.data;
