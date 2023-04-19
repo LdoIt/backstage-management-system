@@ -7,10 +7,10 @@
       :data="menu"
       show-checkbox
       node-key="name"
-      :props="defaultProps"
-      ref="tree"
-      />
-    <el-button type="primary" @click="getSelectedNodes">获取选中的节点</el-button>
+      :default-expanded-keys="[2, 3]"
+      :default-checked-keys="[5]"
+      :props="name">
+      </el-tree>
   </div>
 </template>
 
@@ -18,19 +18,16 @@
 export default {
   data() {
     return {
-      menu: [],
-      defaultProps: {
-        children: 'children',
-        label: 'name'
-      }
+      menu: []
     }
   },
   created() {
     this.menu = [...this.$router.options.routes];
+    console.log(this.$router.options.routes);
   },
   methods: {
-    getSelectedNodes(data) {
-      console.log(this.$refs.tree.getCheckedNodes());
+    handleCheckChange(data, checked, indeterminate) {
+      console.log(data, checked, indeterminate)
     }
   }
 }

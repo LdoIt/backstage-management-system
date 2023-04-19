@@ -21,3 +21,5 @@ export function editInfo(d) {let data = qs.stringify(d);return service.put('/api
 export function getWorkList() { return service.get('/api2/works') }
 // 列表分页查询接口
 export function pagingQuery(page, size) { return service.get(`/api2/works?page=${page}&size=${size}`)}
+// 获取图表数据
+export function getEchartsList() { return service.get('/api2/dataview') }

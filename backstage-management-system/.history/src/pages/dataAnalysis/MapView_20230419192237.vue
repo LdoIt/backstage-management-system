@@ -1,10 +1,14 @@
 <template>
 	<div class="mapMain">
-    <div id="map"/>
+		<section class="section">
+			<div id="map" :style="{ height: '100%', width: '100%' }" />
+		</section>
 	</div>
 </template>
 
 <script>
+import * as echarts from 'echarts'
+require('echarts/theme/macarons') // echarts theme
 import 'echarts/map/js/china.js'
 
 export default {
@@ -19,7 +23,7 @@ export default {
 	methods: {
 		init() {
 			// 基于准备好的dom，初始化echarts实例
-			let chinaMap = this.$echarts.init(document.getElementById("map"));
+			let chinaMap = echarts.init(document.getElementById("map"));
 			window.onresize = chinaMap.resize; // 窗口或框架被调整大小时执行chinaMap.resize
 			chinaMap.setOption({
 				tooltip: {
@@ -124,7 +128,7 @@ export default {
 						},
 						data: [
 							{ name: '上海', value: 10 },
-							{ name: '广东', value: 100 }
+							{ name: '广东', value: 100 },
 						]
 					}
 				]
@@ -135,8 +139,8 @@ export default {
 </script>
 
 <style lang="scss">
-  #map {
+  .map {
     width: 100%;
-    height: 630px;
+    height: 700px;
   }
 </style>

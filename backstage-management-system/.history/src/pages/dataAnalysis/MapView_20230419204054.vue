@@ -124,7 +124,8 @@ export default {
 						},
 						data: [
 							{ name: '上海', value: 10 },
-							{ name: '广东', value: 100 }
+							{ name: '广东', value: 100 },
+              { name: 'guan', value: 23}
 						]
 					}
 				]

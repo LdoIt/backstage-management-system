@@ -8,10 +8,9 @@ import routes from './routes.js'
 // 工具函数
 import {getToken} from '@/utils/setGetRemoveToken'
 Vue.use(VueRouter)
-const router = new VueRouter();
-router.beforeEach((to, from, next) => {
-  console.log(to.name);
-  if (to.path !== 'Login' && getToken('token')) {
+
+routes.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && getToken('token')) {
     next()
   }else {
     alert('请先登录')

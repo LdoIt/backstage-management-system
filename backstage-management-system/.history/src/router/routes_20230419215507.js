@@ -2,8 +2,8 @@
  * @Date: 2023-04-15 21:19:25
  */
 export default [
-  {path: '/', name: '首页', component: () => import('@/pages/Login'), redirect: '/login'},
-  {path: '/login',name: '登录', component: () => import('@/pages/Login')},
+  {path: '/', name: '登录', component: () => import('@/pages/Login'), redirect: '/login'},
+  {path: '/login',name: '首页', component: () => import('@/pages/Login')},
   {path: '/home', name: '学生管理', iconClass: 'fa fa-users', redirect: '/home/student', component: () => import('@/pages/Home'), children: [
     {path: 'student', name: '学生列表', iconClass: 'fa fa-list', component: () => import('@/pages/students/StudentList')},
     {path: 'info', name: '信息列表', iconClass: 'fa fa-list', component: () => import('@/pages/students/InfoList')},

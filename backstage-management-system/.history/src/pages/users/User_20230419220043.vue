@@ -8,9 +8,8 @@
       show-checkbox
       node-key="name"
       :props="defaultProps"
-      ref="tree"
-      />
-    <el-button type="primary" @click="getSelectedNodes">获取选中的节点</el-button>
+      :getCheckedNodes="getSelectedNodes">
+    </el-tree>
   </div>
 </template>
 
@@ -30,7 +29,7 @@ export default {
   },
   methods: {
     getSelectedNodes(data) {
-      console.log(this.$refs.tree.getCheckedNodes());
+      console.log(data)
     }
   }
 }

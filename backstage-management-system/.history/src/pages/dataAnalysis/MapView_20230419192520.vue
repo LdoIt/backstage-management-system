@@ -1,10 +1,13 @@
 <template>
 	<div class="mapMain">
-    <div id="map"/>
+		<section class="section">
+			<div id="map"/>
+		</section>
 	</div>
 </template>
 
 <script>
+// require('echarts/theme/macarons') // echarts theme
 import 'echarts/map/js/china.js'
 
 export default {
@@ -124,7 +127,7 @@ export default {
 						},
 						data: [
 							{ name: '上海', value: 10 },
-							{ name: '广东', value: 100 }
+							{ name: '广东', value: 100 },
 						]
 					}
 				]
