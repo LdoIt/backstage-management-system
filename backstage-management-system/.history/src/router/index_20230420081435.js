@@ -8,12 +8,11 @@ import routes from './routes.js'
 // 工具函数
 import {getToken} from '@/utils/setGetRemoveToken'
 Vue.use(VueRouter)
-const router = new VueRouter({routes, mode: 'history'});
+const router = new VueRouter(routes);
 router.beforeEach((to, from, next) => {
+  debugger
   if (!getToken('token')) {
-    if(to.path !== '/login'){
-      next({ path: '/login' })
-    }else{ next() }
+    next('/login')
   }else {
     next()
   }

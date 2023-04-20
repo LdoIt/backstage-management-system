@@ -3,6 +3,7 @@
  */
 export default [
   {path: '/', name: '首页', component: () => import('@/pages/Login'), redirect: '/login'},
+  {path: '/login', name: '登录', component: () => import('@/pages/Login')},
   {path: '/home', name: '学生管理', iconClass: 'fa fa-users', redirect: '/home/student', component: () => import('@/pages/Home'), children: [
     {path: 'student', name: '学生列表', iconClass: 'fa fa-list', component: () => import('@/pages/students/StudentList')},
     {path: 'info', name: '信息列表', iconClass: 'fa fa-list', component: () => import('@/pages/students/InfoList')},
@@ -19,5 +20,4 @@ export default [
   {path: '/home', name: '用户中心', iconClass: 'fa fa-user', component: () => import('@/pages/Home'), children: [
     {path: 'users', name: '权限管理', iconClass: 'fa fa-user', component: () => import('@/pages/users/User')},
   ]},
-  {path: '/login', name: '登录', component: () => import('@/pages/Login')},
 ]
