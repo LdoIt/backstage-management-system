@@ -30,12 +30,11 @@
   import {ref, reactive} from 'vue'
   import {useRouter} from 'vue-router'
   import { ElMessage } from 'element-plus'
-  // 引入用store
-  import store from '../store'
-
+// 引入用store
+import store from '../store'
   // 存储form中的数据
   let form = reactive({
-    username: 'admin',
+    username: '12',
     password: '123wQWE'
   })
   // 拿到表单DOM
@@ -64,9 +63,7 @@
   const submitForm = (formRef) => {
     formRef.validate((valid) => {
       if(valid) {
-        store.commit('userInfo/ADDUSERNAME', form.username)
-        localStorage.setItem('username', form.username)
-        store.dispatch('data/decrement', 1)
+        
         return router.push('/home');
       }else {
         ElMessage.error('不符合验证规则，请重新输入！！')

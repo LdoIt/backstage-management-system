@@ -3,11 +3,7 @@
 -->
 <template>
   <el-container>
-    <el-header>
-      <div class="title">后台管理系统</div>
-      <span>欢迎您：{{ username }}，count：{{ userInfoCount }}，{{ userInfoCountStr }}</span>
-      <el-button type="danger" class="logout">退出</el-button>
-    </el-header>
+    <el-header><div class="title">后台管理系统</div></el-header>
     <el-container>
       <el-aside>
         <!-- 左边菜单栏 -->
@@ -16,7 +12,7 @@
             <el-radio-button :label="false">expand</el-radio-button>
             <el-radio-button :label="true">collapse</el-radio-button>
           </el-radio-group>
-          <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" router>
+          <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose" router>
             <el-sub-menu index="1">
               <template #title>
                 <el-icon><Avatar /></el-icon>
@@ -44,17 +40,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
-import store from '../store'
+import { ref } from 'vue'
+import {useStore} from 'vuex'
+// 使用store
+const store = useStore()
+console.log(store);
+store.commit('increment', 2)
+console.log(store.state.count);
+console.log(store.getters.countStr);
 const isCollapse = ref(true)
-let username = ref('')
-onMounted(() => {
-  username.value = store.state.userInfo.username
-  // 下面是练习代码
-  store.dispatch('userInfo/increment', 2)
-})
-const userInfoCount = computed(() => store.state.userInfo.count )
-const userInfoCountStr = computed(() => store.getters['userInfo/countStr'] )
+const handleOpen = (key, keyPath) => {
+  console.log(key, keyPath)
+}
+const handleClose = (key, keyPath) => {
+  console.log(key, keyPath)
+}
+
 </script>
 
 <style lang="less">
@@ -73,10 +74,6 @@ const userInfoCountStr = computed(() => store.getters['userInfo/countStr'] )
         text-align: center;
         font: 800 30px '微软雅黑';
         width: 250px;
-      }
-      .logout {
-        float: right;
-        margin: 15px 0;
       }
     }
     .el-container {

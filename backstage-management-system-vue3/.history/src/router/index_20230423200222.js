@@ -9,12 +9,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-router.beforeEach((to, from, next)=>{
-  if(to.path != '/login') {
-    if(localStorage.getItem('username')) next()
-    else next('/login');
-  }else {
-    next()
-  }
+router.beforeEach((to, from)=>{
+  if(to.path != '/login' && localStorage.getItem('username')) return {path: '/login'}
+  else next()
 })
 export default router

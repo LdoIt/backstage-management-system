@@ -16,7 +16,7 @@ export default createStore({
   actions: {},
   // 模块化vuex
   modules: {
-    userInfo,
-    data
+    data,
+    userInfo
   }
 })

@@ -53,8 +53,12 @@ onMounted(() => {
   // 下面是练习代码
   store.dispatch('userInfo/increment', 2)
 })
-const userInfoCount = computed(() => store.state.userInfo.count )
-const userInfoCountStr = computed(() => store.getters['userInfo/countStr'] )
+const userInfoCount = computed(() => {
+  return store.state.userInfo.count
+})
+const userInfoCountStr = computed(() => {
+  return store.getters['userInfo/countStr']
+})
 </script>
 
 <style lang="less">

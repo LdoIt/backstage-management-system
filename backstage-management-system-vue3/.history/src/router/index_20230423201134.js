@@ -10,9 +10,10 @@ const router = createRouter({
   routes
 })
 router.beforeEach((to, from, next)=>{
+  console.log(to.path != '/login' && localStorage.getItem('username'));
   if(to.path != '/login') {
     if(localStorage.getItem('username')) next()
-    else next('/login');
+    else return false;
   }else {
     next()
   }

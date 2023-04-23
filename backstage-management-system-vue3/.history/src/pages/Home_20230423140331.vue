@@ -5,8 +5,7 @@
   <el-container>
     <el-header>
       <div class="title">后台管理系统</div>
-      <span>欢迎您：{{ username }}，count：{{ userInfoCount }}，{{ userInfoCountStr }}</span>
-      <el-button type="danger" class="logout">退出</el-button>
+      <el-button type="danger">退出</el-button>
     </el-header>
     <el-container>
       <el-aside>
@@ -44,17 +43,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import store from '../store'
 const isCollapse = ref(true)
 let username = ref('')
-onMounted(() => {
-  username.value = store.state.userInfo.username
-  // 下面是练习代码
-  store.dispatch('userInfo/increment', 2)
+onMounted( () => {
+  username.value = store.userInfo.state
 })
-const userInfoCount = computed(() => store.state.userInfo.count )
-const userInfoCountStr = computed(() => store.getters['userInfo/countStr'] )
 </script>
 
 <style lang="less">
@@ -73,10 +68,6 @@ const userInfoCountStr = computed(() => store.getters['userInfo/countStr'] )
         text-align: center;
         font: 800 30px '微软雅黑';
         width: 250px;
-      }
-      .logout {
-        float: right;
-        margin: 15px 0;
       }
     }
     .el-container {

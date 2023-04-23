@@ -3,18 +3,13 @@
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './routes'
-// import store from '../store'
+import store from '../store'
 // 生成hash路由对象
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
 router.beforeEach((to, from, next)=>{
-  if(to.path != '/login') {
-    if(localStorage.getItem('username')) next()
-    else next('/login');
-  }else {
-    next()
-  }
+  console.log(to, from);
 })
 export default router

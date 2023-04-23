@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
 import userInfo from './userInfo'
-import data from './data'
 export default createStore({
   state() {
     return {
@@ -16,7 +15,6 @@ export default createStore({
   actions: {},
   // 模块化vuex
   modules: {
-    userInfo,
-    data
+    userInfo
   }
 })

@@ -65,8 +65,6 @@
     formRef.validate((valid) => {
       if(valid) {
         store.commit('userInfo/ADDUSERNAME', form.username)
-        localStorage.setItem('username', form.username)
-        store.dispatch('data/decrement', 1)
         return router.push('/home');
       }else {
         ElMessage.error('不符合验证规则，请重新输入！！')

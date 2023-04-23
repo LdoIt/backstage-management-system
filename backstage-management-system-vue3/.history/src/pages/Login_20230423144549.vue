@@ -65,7 +65,6 @@
     formRef.validate((valid) => {
       if(valid) {
         store.commit('userInfo/ADDUSERNAME', form.username)
-        localStorage.setItem('username', form.username)
         store.dispatch('data/decrement', 1)
         return router.push('/home');
       }else {

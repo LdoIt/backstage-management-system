@@ -5,7 +5,7 @@
   <el-container>
     <el-header>
       <div class="title">后台管理系统</div>
-      <span>欢迎您：{{ username }}，count：{{ userInfoCount }}，{{ userInfoCountStr }}</span>
+      <span>欢迎您：{{ username }}，count：{{ userInfoCount }}，{{ store.getters['userInfo/countStr'] }}</span>
       <el-button type="danger" class="logout">退出</el-button>
     </el-header>
     <el-container>
@@ -53,8 +53,9 @@ onMounted(() => {
   // 下面是练习代码
   store.dispatch('userInfo/increment', 2)
 })
-const userInfoCount = computed(() => store.state.userInfo.count )
-const userInfoCountStr = computed(() => store.getters['userInfo/countStr'] )
+const userInfoCount = computed(() => {
+  return store.state.userInfo.count
+})
 </script>
 
 <style lang="less">
