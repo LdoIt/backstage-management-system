@@ -15,7 +15,7 @@
           <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen" @close="handleClose" router>
             <el-sub-menu index="1">
               <template #title>
-                <el-icon><Avatar /></el-icon>
+                <el-icon><Menu /></el-icon>
                 <span>账号管理</span>
               </template>
               <el-menu-item-group>
@@ -24,7 +24,7 @@
             </el-sub-menu>
             <el-sub-menu index="2">
               <template #title>
-                <el-icon><UserFilled /></el-icon>
+                <el-icon><icon-menu /></el-icon>
                 <span>角色管理</span>
               </template>
               <el-menu-item-group>
@@ -40,12 +40,11 @@
 </template>
 
 <script setup>
-import { ref  } from 'vue'
-// 使用store
-import store from '../store'
-store.commit('increment', 2)
-console.log(store.state.count);
-console.log(store.getters.countStr);
+import { ref } from 'vue'
+// import {
+//   Menu as IconMenu,
+// } from '@element-plus/icons-vue'
+
 const isCollapse = ref(true)
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath)

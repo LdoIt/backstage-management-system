@@ -43,9 +43,6 @@
 import { ref  } from 'vue'
 // 使用store
 import store from '../store'
-store.commit('increment', 2)
-console.log(store.state.count);
-console.log(store.getters.countStr);
 const isCollapse = ref(true)
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath)

@@ -29,7 +29,6 @@
 <script setup>
   import {ref, reactive} from 'vue'
   import {useRouter} from 'vue-router'
-  import { ElMessage } from 'element-plus'
   // 存储form中的数据
   let form = reactive({
     username: '12',
@@ -61,8 +60,8 @@
   const submitForm = (formRef) => {
     console.log(router);
     formRef.validate((valid) => {
-      if(valid) router.push('/home');
-      ElMessage.error('不符合验证规则，请重新输入！！')
+      if(valid) return router.push('/home');
+      .ElMessage.error('Oops, this is a error message.')
     })
   }
   let formrules = reactive({
