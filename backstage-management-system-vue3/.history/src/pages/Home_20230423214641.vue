@@ -44,11 +44,15 @@
 </template>
 
 <script setup>
+import axios from 'axios'
 import { ref, onMounted, computed } from 'vue'
 import store from '../store'
 const isCollapse = ref(true)
 let username = ref('')
 onMounted(() => {
+  axios.get('/api', 12).then(res => {
+    console.log(res);
+  })
   username.value = store.state.userInfo.username
   // 下面是练习代码
   store.dispatch('userInfo/increment', 2)

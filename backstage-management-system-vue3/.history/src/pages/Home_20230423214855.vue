@@ -44,6 +44,7 @@
 </template>
 
 <script setup>
+import axios from 'axios'
 import { ref, onMounted, computed } from 'vue'
 import store from '../store'
 const isCollapse = ref(true)
