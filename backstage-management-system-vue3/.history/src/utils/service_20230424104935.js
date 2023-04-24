@@ -3,11 +3,11 @@
  */
 import axios from 'axios'
 import { ElMessage, ElLoading  } from 'element-plus'
-let loadingInstance = null;
+const loadingInstance = null;
 const loadingOption = {
   lock: true,
   text: 'Loading',
-  background: 'rgba(0, 0, 0, 0.1)',
+  background: 'rgba(0, 0, 0, 0.7)',
   target: '#elMain'
 }
 const service = axios.create({
@@ -17,6 +17,7 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(config => {
+  console.log(2222);
   // 加载动画开启
   loadingInstance = ElLoading.service(loadingOption)
   // 请求头设置
@@ -37,4 +38,3 @@ service.interceptors.response.use(response => {
   loadingInstance.close()
   ElMessage.error(error)
 })
-export default service

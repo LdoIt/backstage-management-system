@@ -1,6 +1,3 @@
-/*
- * @Date: 2023-04-20 09:25:13
- */
 import { createApp } from 'vue'
 import App from './App.vue'
 // 导入路由

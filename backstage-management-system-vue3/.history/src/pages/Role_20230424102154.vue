@@ -6,7 +6,7 @@
     <!-- 搜索 -->
     <div class="search">
       <el-input
-        v-model="data.search"
+        v-model="search"
         class="w-50 m-2"
         placeholder="请输入搜索内容"
         :suffix-icon="Search"
@@ -15,7 +15,7 @@
       <el-button type="primary" style="margin-left: 10px">创建用户</el-button>
     </div>
     <!-- 表格 -->
-    <el-table :data="data.roleList" style="width: 100%">
+    <el-table :data="roleList" style="width: 100%">
       <el-table-column fixed prop="date" label="Date" />
       <el-table-column prop="name" label="Name" />
       <el-table-column prop="state" label="State" />
@@ -24,7 +24,9 @@
       <el-table-column prop="zip" label="Zip" />
       <el-table-column fixed="right" label="Operations" >
         <template #default>
-          <el-button link type="primary" size="small" >Detail</el-button>
+          <el-button link type="primary" size="small" @click="handleClick"
+            >Detail</el-button
+          >
           <el-button link type="primary" size="small">Edit</el-button>
         </template>
       </el-table-column>
@@ -34,17 +36,46 @@
 
 <script setup>
   import { Calendar, Search } from '@element-plus/icons-vue'
-  import { onMounted, reactive } from 'vue'
-  import {reqGetRoleList} from '../api'
-  const data = reactive({
-    search: '',
-    roleList: [],
-  })
-  onMounted(() => {
-    reqGetRoleList().then(res => {
-      data.roleList = res.data;
-    })
-  })
+  import {ref} from 'vue'
+  let search = ref('')
+  const roleList = [
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+    tag: 'Home',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+    tag: 'Office',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+    tag: 'Home',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    state: 'California',
+    city: 'Los Angeles',
+    address: 'No. 189, Grove St, Los Angeles',
+    zip: 'CA 90036',
+    tag: 'Office',
+  },
+  ]
 </script>
 
 <style lang="less">

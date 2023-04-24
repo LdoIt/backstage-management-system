@@ -55,7 +55,7 @@
 import { ref, onMounted, computed } from 'vue'
 import store from '../store'
 import {useRoute} from 'vue-router'
-const isCollapse = ref(false)
+const isCollapse = ref(true)
 let username = ref('')
 const route = useRoute();
 onMounted(() => {

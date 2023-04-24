@@ -3,11 +3,11 @@
  */
 import axios from 'axios'
 import { ElMessage, ElLoading  } from 'element-plus'
-let loadingInstance = null;
+const loadingInstance = null;
 const loadingOption = {
   lock: true,
   text: 'Loading',
-  background: 'rgba(0, 0, 0, 0.1)',
+  background: 'rgba(0, 0, 0, 0.2)',
   target: '#elMain'
 }
 const service = axios.create({

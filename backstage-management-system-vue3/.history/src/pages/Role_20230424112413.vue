@@ -34,15 +34,16 @@
 
 <script setup>
   import { Calendar, Search } from '@element-plus/icons-vue'
-  import { onMounted, reactive } from 'vue'
+  import { ref, onMounted, reactive } from 'vue'
   import {reqGetRoleList} from '../api'
   const data = reactive({
     search: '',
     roleList: [],
   })
   onMounted(() => {
+    console.log(111);
     reqGetRoleList().then(res => {
-      data.roleList = res.data;
+      roleList = reactive(res.data);
     })
   })
 </script>

@@ -3,7 +3,7 @@
  */
 import axios from 'axios'
 import { ElMessage, ElLoading  } from 'element-plus'
-let loadingInstance = null;
+const loadingInstance = null;
 const loadingOption = {
   lock: true,
   text: 'Loading',

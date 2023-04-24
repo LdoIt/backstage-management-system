@@ -15,7 +15,7 @@
       <el-button type="primary" style="margin-left: 10px">创建用户</el-button>
     </div>
     <!-- 表格 -->
-    <el-table :data="data.roleList" style="width: 100%">
+    <el-table :data="roleList" style="width: 100%">
       <el-table-column fixed prop="date" label="Date" />
       <el-table-column prop="name" label="Name" />
       <el-table-column prop="state" label="State" />
@@ -34,15 +34,16 @@
 
 <script setup>
   import { Calendar, Search } from '@element-plus/icons-vue'
-  import { onMounted, reactive } from 'vue'
+  import { ref, onMounted, reactive } from 'vue'
   import {reqGetRoleList} from '../api'
   const data = reactive({
     search: '',
     roleList: [],
   })
   onMounted(() => {
+    console.log(111);
     reqGetRoleList().then(res => {
-      data.roleList = res.data;
+      roleList = reactive(res.data);
     })
   })
 </script>

@@ -13,8 +13,8 @@
         <!-- 左边菜单栏 -->
         <div class="leftMenu">
           <el-radio-group v-model="isCollapse">
-            <el-radio-button :label="true">collapse</el-radio-button>
             <el-radio-button :label="false">expand</el-radio-button>
+            <el-radio-button :label="true">collapse</el-radio-button>
           </el-radio-group>
           <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" router>
             <el-sub-menu index="1">
@@ -41,8 +41,8 @@
       <el-main id="elMain">
         <el-card>
           <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/home' }">主页</el-breadcrumb-item>
-          <el-breadcrumb-item v-for="(route, index) in route.matched" :key="index">{{ route.meta.title }}</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/home/account' }">homepage</el-breadcrumb-item>
+          <el-breadcrumb-item>promotion list</el-breadcrumb-item>
         </el-breadcrumb>
         </el-card>
         <router-view></router-view>
@@ -54,10 +54,11 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import store from '../store'
-import {useRoute} from 'vue-router'
-const isCollapse = ref(false)
+import {useRouter} from 'vue-router'
+const isCollapse = ref(true)
 let username = ref('')
-const route = useRoute();
+const route = useRouter();
+console.log(route);
 onMounted(() => {
   username.value = store.state.userInfo.username
   // 下面是练习代码

@@ -42,7 +42,7 @@
   })
   onMounted(() => {
     reqGetRoleList().then(res => {
-      data.roleList = res.data;
+      roleList = reactive(res.data);
     })
   })
 </script>

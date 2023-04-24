@@ -43,6 +43,7 @@
   onMounted(() => {
     reqGetRoleList().then(res => {
       data.roleList = res.data;
+      data.search = 111;
     })
   })
 </script>
