@@ -2,8 +2,7 @@
  * @Date: 2023-04-20 09:25:13
 -->
 <template>
-  <el-container>
-    <!-- 头部区域 -->
+  <el-container style="height: 100%;">
     <el-header>
       <div class="title">后台管理系统</div>
       <span>欢迎您：{{ username }}，count：{{ userInfoCount }}，{{ userInfoCountStr }}</span>
@@ -49,7 +48,8 @@
         </el-breadcrumb>
         </el-card>
         <router-view></router-view>
-      </el-main>  
+      </el-main>
+      
     </el-container>
   </el-container>
 </template>

@@ -15,7 +15,7 @@
       <el-button type="primary" style="margin-left: 10px">创建用户</el-button>
     </div>
     <!-- 表格 -->
-    <el-table :data="data.roleList" style="width: 100%">
+    <el-table :data="roleList" style="width: 100%">
       <el-table-column fixed prop="date" label="Date" />
       <el-table-column prop="name" label="Name" />
       <el-table-column prop="state" label="State" />
@@ -40,12 +40,11 @@
     search: '',
     roleList: [],
   })
-  // let roleList = reactive([])
+  let roleList = reactive([])
   onMounted(() => {
     reqGetRoleList().then(res => {
-      // roleList = res.data; // vue 中这种赋值给一个对象或者数组会导致视图不会更新，虽然vue中数据是改变了，需要使用下面这一行代码，或使用下面第二行代码
-      // roleList.push(...res.data);
-      data.roleList = res.data // 这种赋值防止会被vue检测的到，视图也会及时更新
+      // data.roleList = res.data; // vue 中这种赋值防止给一个对象或者数组会导致视图不会更新，虽然vue中数据是改变了
+      roleList.push(...res.data);
     })
   })
 </script>

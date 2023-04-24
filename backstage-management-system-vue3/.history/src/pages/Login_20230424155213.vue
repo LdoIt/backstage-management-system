@@ -89,10 +89,12 @@ body {
   height: 100%;
 }
 .appContainer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  top: -50%;
+  transform: translate(0, -50%);
+}
+.el-card {
+  margin: 0 auto;
 }
 .card-header {
   display: flex;

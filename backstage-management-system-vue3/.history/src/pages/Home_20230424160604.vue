@@ -3,7 +3,6 @@
 -->
 <template>
   <el-container>
-    <!-- 头部区域 -->
     <el-header>
       <div class="title">后台管理系统</div>
       <span>欢迎您：{{ username }}，count：{{ userInfoCount }}，{{ userInfoCountStr }}</span>
@@ -49,7 +48,8 @@
         </el-breadcrumb>
         </el-card>
         <router-view></router-view>
-      </el-main>  
+      </el-main>
+      
     </el-container>
   </el-container>
 </template>
@@ -93,7 +93,7 @@ const userInfoCountStr = computed(() => store.getters['userInfo/countStr'] )
       }
     }
     .el-container {
-      height: 100%;
+      // height: 100%;
       .el-aside {
         height: 100%;
         border-right: solid 1px #dcdfe6;

@@ -43,9 +43,9 @@
   // let roleList = reactive([])
   onMounted(() => {
     reqGetRoleList().then(res => {
-      // roleList = res.data; // vue 中这种赋值给一个对象或者数组会导致视图不会更新，虽然vue中数据是改变了，需要使用下面这一行代码，或使用下面第二行代码
+      // data.roleList = res.data; // vue 中这种赋值给一个对象或者数组会导致视图不会更新，虽然vue中数据是改变了，需要使用下面这一行代码
       // roleList.push(...res.data);
-      data.roleList = res.data // 这种赋值防止会被vue检测的到，视图也会及时更新
+      data.roleList = res.data
     })
   })
 </script>

@@ -3,15 +3,14 @@
 -->
 <template>
   <el-container>
-    <!-- 头部区域 -->
     <el-header>
       <div class="title">后台管理系统</div>
       <span>欢迎您：{{ username }}，count：{{ userInfoCount }}，{{ userInfoCountStr }}</span>
       <el-button type="danger" class="logout">退出</el-button>
     </el-header>
     <el-container>
-      <!-- 左边菜单栏 -->
       <el-aside>
+        <!-- 左边菜单栏 -->
         <div class="leftMenu">
           <el-radio-group v-model="isCollapse">
             <el-radio-button :label="true">collapse</el-radio-button>
@@ -39,8 +38,6 @@
           </el-menu>
         </div>
       </el-aside>
-
-      <!-- 主要展示区 -->
       <el-main id="elMain">
         <el-card>
           <el-breadcrumb separator="/">
@@ -49,7 +46,7 @@
         </el-breadcrumb>
         </el-card>
         <router-view></router-view>
-      </el-main>  
+      </el-main>
     </el-container>
   </el-container>
 </template>
