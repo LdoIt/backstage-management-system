@@ -7,6 +7,7 @@
     <div class="search">
       <el-input
         v-model="data.search"
+        class="w-50 m-2"
         placeholder="请输入搜索内容"
         :suffix-icon="Search"
         autofocus
@@ -31,8 +32,6 @@
         </template>
       </el-table-column>
     </el-table>
-
-    
   </div>
 </template>
 

@@ -67,7 +67,7 @@
       if(valid) {
         try {
           let res = await reqLogin();
-          localStorage.setItem('token', res.token)
+          console.log(res);
           store.commit('userInfo/ADDUSERNAME', form.username)
           localStorage.setItem('username', form.username)
           store.dispatch('data/decrement', 1)

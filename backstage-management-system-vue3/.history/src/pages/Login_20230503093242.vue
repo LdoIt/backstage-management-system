@@ -67,13 +67,13 @@
       if(valid) {
         try {
           let res = await reqLogin();
-          localStorage.setItem('token', res.token)
+          console.log(res);
           store.commit('userInfo/ADDUSERNAME', form.username)
           localStorage.setItem('username', form.username)
           store.dispatch('data/decrement', 1)
           router.push('/home');
         } catch (error) {
-          ElMessage.error('登录失败！')
+          ElMessage.error('登录失败')
         }
         
       }else {

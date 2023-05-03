@@ -7,15 +7,14 @@
     <div class="search">
       <el-input
         v-model="data.search"
+        class="w-50 m-2"
         placeholder="请输入搜索内容"
         :suffix-icon="Search"
         autofocus
         @keyup.enter="search"
       />
-      <el-button type="primary" style="margin-left: 10px" @click="reset">重置</el-button>
       <el-button type="primary" style="margin-left: 10px">创建用户</el-button>
     </div>
-    
     <!-- 表格 -->
     <el-table :data="data.roleList" style="width: 100%">
       <el-table-column fixed prop="date" label="Date" />
@@ -31,8 +30,6 @@
         </template>
       </el-table-column>
     </el-table>
-
-    
   </div>
 </template>
 
@@ -53,24 +50,15 @@
     })
   })
   function search() {
+    let count = 0
     let arr = []
-    let count = 0;
     data.roleList.forEach(item => {
       if(item.name == data.search) {
         arr.push(item)
         count++
       }
     })
-    if(count > 0) {
-      data.roleList.splice(0, data.roleList.length);
-      data.roleList.push(...arr);
-    }
-  }
-  function reset() {
-    reqGetRoleList().then(res => {
-      data.roleList = res.data
-      console.log(data.roleList);
-    })
+    count > 0 ? data.roleList.splice(--count): '';
   }
 </script>
 

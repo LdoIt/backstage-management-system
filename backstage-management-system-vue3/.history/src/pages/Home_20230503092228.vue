@@ -10,7 +10,6 @@
       <el-button type="danger" class="logout" @click="logout">退出</el-button>
     </el-header>
     <el-container>
-
       <!-- 左边菜单栏 -->
       <el-aside>
         <div class="leftMenu">
@@ -71,7 +70,6 @@ onMounted(() => {
   store.dispatch('userInfo/increment', 2)
 })
 function logout() {
-  localStorage.removeItem('token')
   router.push('/login')
 }
 </script>
@@ -81,7 +79,6 @@ function logout() {
   body {
     height: 100%;
     .el-header {
-      position: relative;
       border-bottom: solid 1px #dcdfe6;
       .title {
         position: absolute;

@@ -7,13 +7,18 @@
     <div class="search">
       <el-input
         v-model="data.search"
+        class="w-50 m-2"
         placeholder="请输入搜索内容"
         :suffix-icon="Search"
         autofocus
         @keyup.enter="search"
       />
-      <el-button type="primary" style="margin-left: 10px" @click="reset">重置</el-button>
+
+
       <el-button type="primary" style="margin-left: 10px">创建用户</el-button>
+
+      
+      <el-button type="primary" style="margin-left: 10px" @click="reset">重置</el-button>
     </div>
     
     <!-- 表格 -->
@@ -31,8 +36,6 @@
         </template>
       </el-table-column>
     </el-table>
-
-    
   </div>
 </template>
 

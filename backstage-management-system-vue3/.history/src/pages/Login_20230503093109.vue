@@ -65,17 +65,12 @@
   const submitForm = (formRef) => {
     formRef.validate(async (valid) => {
       if(valid) {
-        try {
-          let res = await reqLogin();
-          localStorage.setItem('token', res.token)
-          store.commit('userInfo/ADDUSERNAME', form.username)
-          localStorage.setItem('username', form.username)
-          store.dispatch('data/decrement', 1)
-          router.push('/home');
-        } catch (error) {
-          ElMessage.error('登录失败！')
-        }
-        
+        let res = await reqLogin();
+        console.log(res);
+        store.commit('userInfo/ADDUSERNAME', form.username)
+        localStorage.setItem('username', form.username)
+        store.dispatch('data/decrement', 1)
+        return router.push('/home');
       }else {
         ElMessage.error('不符合验证规则，请重新输入！！')
       }
